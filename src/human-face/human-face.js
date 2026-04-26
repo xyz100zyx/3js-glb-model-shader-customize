@@ -8,6 +8,7 @@ import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import beginVertexShaderChunk from "./shaders/begin-vertex-custom-shader-chunk.glsl";
 import commonShaderChunk from "./shaders/common-custom-shader-chunk.glsl";
 import glbDepthMaterialShaderChunk from "./shaders/glb-depth-material-custom-shader-chunk.glsl";
+import beginNormalShaderChunk from "./shaders/begin-normal-shader-chunk.glsl";
 
 /**
  * будет ссылкой на объект реальных uniforms
@@ -100,6 +101,10 @@ function customizeMaterial(material) {
     shader.vertexShader = shader.vertexShader.replace(
       "#include <common>",
       commonShaderChunk,
+    );
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <beginnormal_vertex>",
+      beginNormalShaderChunk,
     );
     shader.vertexShader = shader.vertexShader.replace(
       "#include <begin_vertex>",
